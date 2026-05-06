@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+
+{% block contenuto %}
+
+<h1>Quadrato Strappato</h1>
+<p>Inserisci i parametri e premi Genera per creare il frattale.</p>
+
+<div class="layout">
+
+    <!--COLONNA SINISTRA CON INPUT-->
+    <div class="colonna-form">
+        <form action="/frattale" method="post">
+
+            <label>Vertice in basso a sinistra — X</label>
+            <input type="number" name="x1" value="{{ x1 if x1 is defined else 0 }}" step="0.1">
+
+            <label>Vertice in basso a sinistra — Y</label>
+            <input type="number" name="y1" value="{{ y1 if y1 is defined else 1 }}" step="0.1">
+
+            <label>Lato del quadrato</label>
+            <input type="number" name="lato" value="{{ lato if lato is defined else 5 }}" step="0.1" min="1">
+
+            <label>Profondità (livelli di ricorsione)</label>
+            <input type="number" name="profondita" value="{{ profondita if profondita is defined else 3 }}" min="0" max="6">
+
+            <button type="submit">Genera Frattale</button>
+
+        </form>
+    </div>
+
+    <!-- COLONNA DESTRA: GRIGLIA VUOTA O FRATTALE -->
+    <div class="colonna-frattale">
+        {% if immagine %}
+            <p class="info">Vertice: ({{ x1 }}, {{ y1 }}) — Lato: {{ lato }} — Profondità: {{ profondita }}</p>
+            <img src="data:image/png;base64,{{ immagine }}" alt="Frattale generato">
+
+            <a href="data:image/png;base64,{{ immagine }}"
+               download="quadrato_strappato_liv{{ profondita }}.png">
+                <button type="button">💾 Salva immagine</button>
+            </a>
+
+            <form action="/salva_archivio" method="post" style="display:inline;">
+                <input type="hidden" name="x1"         value="{{ x1 }}">
+                <input type="hidden" name="y1"         value="{{ y1 }}">
+                <input type="hidden" name="lato"       value="{{ lato }}">
+                <input type="hidden" name="profondita" value="{{ profondita }}">
+                <button type="submit">🗂️ Aggiungi all'archivio</button>
+            </form>
+
+            {% if salvato %}
+                <p class="info" style="color: green;">✅ Frattale salvato nell'archivio!</p>
+            {% endif %}
+
+        {% else %}
+            <div class="griglia-vuota">
+                <span class="griglia-testo">Il frattale apparirà qui</span>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <nav>
+        <a href="/teoria">GENERALE</a>
+        <a href="/frattale">FRATTALE</a>
+        <a href="/archivio">ARCHIVIO</a>
+    </nav>
+
+{% block contenuto %}
+
+<div class="teoria-container">
+    
+    <div class="teoria-hero">
+        <div class="teoria-hero-icona">⬛</div>
+        <h1 class="teoria-hero-titolo">Poligono Strappato</h1>
+        <p class="teoria-hero-sub">Una giometria che parte da un quadrato</p>
+    </div>
+
+    <!-- INTRODUZIONE -->
+    <section class="teoria-sezione">
+        <h2>1. Cos'è il Poligono Strappato?</h2>
+        <p>
+            Il <strong>Poligono Strappato</strong> è un frattale che si ottiene partendo da un poligono regolare —
+            solitamente un quadrato — e applicando una trasformazione ricorsiva su ogni lato.
+            Ad ogni iterazione, ogni lato viene "strappato" verso l'interno, generando una forma sempre più
+            complessa e dettagliata.
+        </p>
+    </section>
+
+    <!-- COSTRUZIONE -->
+    <section class="teoria-sezione">
+        <h2>2. Come si costruisce</h2>
+        <p>Immagina di prendere ogni lato del quadrato e trasformarlo seguendo questi semplici passaggi:</p>
+
+        <div class="teoria-steps">
+            <div class="teoria-step">
+                <div class="step-numero">1</div>
+                <div class="step-testo">
+                    <strong>Dividi il lato</strong><br>
+                    Il lato originale viene diviso in tre parti uguali. Otteniamo così i punti <code>primo_terzo</code> e <code>secondo_terzo</code>.
+                </div>
+            </div>
+            <div class="teoria-step">
+                <div class="step-numero">2</div>
+                <div class="step-testo">
+                    <strong>Scegli la direzione</strong><br>
+                    Il codice calcola una linea perpendicolare (la <code>normale</code>) che punta verso l'interno della figura.
+                </div>
+            </div>
+            <div class="teoria-step">
+                <div class="step-numero">3</div>
+                <div class="step-testo">
+                    <strong>Crea la "punta"</strong><br>
+                    Partendo dal centro del lato, il codice sposta un punto verso l'interno (l'<code>apice</code>) per creare l'effetto "strappato".
+                </div>
+            </div>
+            <div class="teoria-step">
+                <div class="step-numero">4</div>
+                <div class="step-testo">
+                    <strong>Sostituisci e ripeti</strong><br>
+                    Il vecchio lato dritto viene sostituito da 4 nuovi segmenti. Questo processo si ripete per ogni nuovo lato in base alla <code>profondità</code> scelta.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CODICE PYTHON -->
+    <section class="teoria-sezione">
+        <h2>3. Il codice Python</h2>
+        <p>
+            Ecco il codice python per la generazione del poligono strappato
+
+        <div class="teoria-codice">
+<pre><code>def quadrato_strappato(vertici, profondita):
+    # Caso base: profondità 0, restituisce i vertici invariati
+    if profondita == 0:
+        return vertici
+
+    nuovi_punti = []
+    numero_vertici = len(vertici)
+
+    for i in range(numero_vertici):
+        p1 = vertici[i]
+        p2 = vertici[(i + 1) % numero_vertici]
+
+        # Divide il lato
+        primo_terzo   = p1 + (p2 - p1) / 3
+        secondo_terzo = p1 + (p2 - p1) * 2 / 3
+
+        # Calcola il vettore interno
+        dx = p2[0] - p1[0]
+        dy = p2[1] - p1[1]
+        lunghezza = np.sqrt(dx**2 + dy**2)
+        normale_x = -dy / lunghezza
+        normale_y =  dx / lunghezza
+
+        # Costruisce l'apice del triangolo isoscele
+        centro  = (primo_terzo + secondo_terzo) / 2
+        altezza = lunghezza / 3
+        apice   = centro + np.array([normale_x, normale_y]) * altezza
+
+        # Sostituisce il lato con 4 segmenti
+        nuovi_punti.extend([p1, primo_terzo, apice, secondo_terzo])
+
+    # Chiamata ricorsiva al livello successivo
+    return quadrato_strappato(np.array(nuovi_punti), profondita - 1)
+        </code></pre>
+    </div>
+
+        <div class="teoria-prop-griglia" style="margin-top: 1.5rem;">
+            <div class="teoria-prop-card">
+                <div class="prop-icona">🔁</div>
+                <h3>Ricorsione</h3>
+                <p>La funzione chiama se stessa con <code>profondita - 1</code> finché non raggiunge 0. Ogni chiamata lavora su un poligono con 4× più lati del precedente.</p>
+            </div>
+            <div class="teoria-prop-card">
+                <div class="prop-icona">📦</div>
+                <h3>Caso Base</h3>
+                <p>Quando <code>profondita == 0</code> la funzione si ferma e restituisce i vertici attuali senza modificarli. Senza questo, la ricorsione sarebbe infinita.</p>
+            </div>
+            <div class="teoria-prop-card">
+                <div class="prop-icona">➗</div>
+                <h3>Complessità</h3>
+                <p>Ad ogni livello il numero di vertici si moltiplica per 4. Al livello <em>n</em> avremo <strong>4 × 4<sup>n</sup></strong> vertici totali.</p>
+            </div>
+        </div>
+    </section>
+
+    <div style="text-align:center; margin: 3rem 0;">
+        <p style="color: rgba(255,255,255,0.6); margin-bottom: 1rem;">
+            Hai capito come funziona? Ora provalo tu stesso!
+        </p>
+        <a href="/frattale" class="bottone-ovale">Genera il tuo Frattale →</a>
+        </div>
+    </div>
+
+{% endblock %}
+    
+    <footer>
+    <div class="footer-contenuto">
+
+        <div class="footer-titolo">
+            <h3>🌀 Generatore di Frattali</h3>
+            <p>Progetto scolastico di matematica</p>
+        </div>
+
+         <div class="footer-team">
+            <div class="footer-card">
+                <div class="footer-avatar">AM</div>
+                <h4>Andrea Minutolo</h4>
+                <p>Sviluppo & Design</p>
+                <a href="mailto:minutolo.andrea@studenti.edu.it">minutolo786@istitutoeuropaunita.edu.it</a>
+            </div>
+            <div class="footer-card">
+                <div class="footer-avatar">LB</div>
+                <h4>Lorenzo Barbato</h4>
+                <p>Sviluppo & Design</p>
+                <a href="mailto:barbato899@istitutoeuropaunita.edu.it">barbato899@istitutoeuropaunita.edu.it</a>
+            </div>
+            <div class="footer-card">
+                <div class="footer-avatar">MS</div>
+                <h4>Matteo Sula</h4>
+                <p>Sviluppo & Design</p>
+                <a href="mailto:sula.matteo@studenti.edu.it">sula604@istitutoeuropaunita.edu.it</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Andrea Minutolo · Lorenzo Barbato · Matteo Sula — Tutti i diritti riservati</p>
+        </div>
+    </footer>
+</body>
+
+</html>

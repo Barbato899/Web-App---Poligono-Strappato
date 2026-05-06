@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block contenuto %}
+
+<h1>Archivio Frattali</h1>
+
+{% if archivio %}
+    <p>{{ archivio|length }} frattale/i salvati in memoria.</p>
+
+    <div class="archivio-griglia">
+        {% for f in archivio|reverse %}
+        <div class="archivio-card">
+
+            <img src="data:image/png;base64,{{ f.immagine }}" alt="Frattale livello {{ f.profondita }}">
+
+            <div class="archivio-info">
+                <p><strong>Profondità:</strong> {{ f.profondita }}</p>
+                <p><strong>Lato:</strong> {{ f.lato }}</p>
+                <p><strong>Vertice:</strong> ({{ f.x1 }}, {{ f.y1 }})</p>
+                <p><strong>Salvato il:</strong> {{ f.data }}</p>
+            </div>
+
+            <div class="archivio-azioni">
+                <!-- SCARICA IMMAGINE -->
+                <a href="data:image/png;base64,{{ f.immagine }}"
+                   download="quadrato_strappato_liv{{ f.profondita }}.png">
+                    <button type="button">💾 Scarica</button>
+                </a>
+
+                <!-- ELIMINA FRATTALE -->
+                <form action="/elimina/{{ f.id }}" method="post" style="display:inline;">
+                    <button type="submit"
+                            onclick="return confirm('Rimuovere questo frattale dall\'archivio?')">
+                        🗑️ Elimina
+                    </button>
+                </form>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+{% else %}
+    <p>L'archivio è vuoto. Genera un frattale e premi <strong>Aggiungi all'archivio</strong>!</p>
+{% endif %}
+
+{% endblock %}

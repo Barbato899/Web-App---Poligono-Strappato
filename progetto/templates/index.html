@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} — Frattali</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <a href="/teoria">GENERALE</a>
+        <a href="/frattale">FRATTALE</a>
+        <a href="/archivio">ARCHIVIO</a>
+    </nav>
+
+    <main>
+        {% block contenuto %}{% endblock %}
+    </main>
+
+    <footer>
+    <div class="footer-contenuto">
+
+        <div class="footer-titolo">
+            <h3>🌀 Generatore di Frattali</h3>
+            <p>Progetto scolastico di matematica</p>
+        </div>
+
+         <div class="footer-team">
+            <div class="footer-card">
+                <div class="footer-avatar">AM</div>
+                <h4>Andrea Minutolo</h4>
+                <p>Sviluppo & Design</p>
+                <a href="mailto:minutolo.andrea@studenti.edu.it">minutolo786@istitutoeuropaunita.edu.it</a>
+            </div>
+            <div class="footer-card">
+                <div class="footer-avatar">LB</div>
+                <h4>Lorenzo Barbato</h4>
+                <p>Sviluppo & Design</p>
+                <a href="mailto:barbato899@istitutoeuropaunita.edu.it">barbato899@istitutoeuropaunita.edu.it</a>
+            </div>
+            <div class="footer-card">
+                <div class="footer-avatar">MS</div>
+                <h4>Matteo Sula</h4>
+                <p>Sviluppo & Design</p>
+                <a href="mailto:sula.matteo@studenti.edu.it">sula604@istitutoeuropaunita.edu.it</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Andrea Minutolo · Lorenzo Barbato · Matteo Sula — Tutti i diritti riservati</p>
+        </div>
+    </div> 
+</footer> 
+
+</body>
+</html>

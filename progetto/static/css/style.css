@@ -1,0 +1,558 @@
+/* BASE */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-color: #081418;
+    background-image:
+        radial-gradient(circle at 15% 85%, rgba(0, 150, 150, 0.65) 0%, transparent 55%),
+        radial-gradient(circle at 80% 15%, rgba(0, 90, 120, 0.65) 0%, transparent 50%),
+        linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.03) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.03) 75%);
+    background-size: auto, auto, 34px 34px, 34px 34px, 34px 34px, 34px 34px;
+    background-position: 0 0, 0 0, 0 0, 0 17px, 17px -17px, -17px 0px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+p {
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+}
+
+
+/* NAVBAR */
+nav {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    height: 85px;
+    gap: 80px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-top: 25px;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    transition: 0.3s linear;
+}
+
+nav a:hover {
+    transform: scale(1.20);
+    color: #4fc3f7;
+    text-decoration: underline;
+    text-decoration-color: #4fc3f7;
+}
+
+
+/* LAYOUT PRINCIPALE */
+main {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.layout {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    margin-top: 40px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.titolo-grande {
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin-bottom: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* BOTTONI */
+.bottone-ovale {
+    display: inline-block;
+    padding: 14px 40px;
+    margin-top: 20px;
+    background: #2979ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 18px;
+    transition: background 0.2s;
+}
+
+.bottone-ovale:hover {
+    background: #448aff;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #4B66FE;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* PAGINA TEORIA POLIGONO STRAPPATO */
+
+.teoria-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+/* HERO SECTION */
+.teoria-hero {
+    text-align: center;
+    padding: 3rem 0 2rem;
+}
+
+.teoria-hero-icona {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.teoria-hero-titolo {
+    font-size: 3rem;
+    color: white;
+    margin: 0 0 0.5rem;
+}
+
+.teoria-hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+}
+
+/* SEZIONI */
+.teoria-sezione {
+    margin-top: 3.5rem;
+}
+
+.teoria-sezione h2 {
+    color: #4fc3f7;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(79,195,247,0.25);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+/* STEPS COSTRUZIONE */
+.teoria-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.teoria-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+}
+
+.step-numero {
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0d7377, #4fc3f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.step-testo {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* CODICE */
+.teoria-codice {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(79,195,247,0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.teoria-codice pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    color: #a8d8ea;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.teoria-codice code {
+    color: #a8d8ea;
+}
+
+/* PROPRIETÀ GRIGLIA FINALE */
+.teoria-prop-griglia {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.2rem;
+}
+
+.teoria-prop-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.prop-icona {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+}
+
+.teoria-prop-card h3 {
+    color: #4fc3f7;
+    margin: 0 0 0.6rem;
+    font-size: 1rem;
+}
+
+.teoria-prop-card p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    margin: 0 0 0.6rem;
+    text-align: center;
+}
+
+/* FORM FRATTALE */
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+input {
+    display: block;
+    margin-top: 5px;
+    padding: 6px;
+    width: 200px;
+}
+
+.colonna-form {
+    min-width: 250px;
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.colonna-frattale {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.colonna-frattale img {
+    max-width: 100%;
+}
+
+.griglia-vuota {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 500px;
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    background-image:
+        linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.griglia-testo {
+    color: #aaa;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.info {
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+
+/* CARD TEORIA */
+.card-griglia {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.card-frattale {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-frattale:hover {
+    transform: translateY(-12px) scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #4fc3f7;
+    box-shadow: 0 15px 35px rgba(79, 195, 247, 0.2);
+}
+
+.card-frattale::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.card-frattale:hover::after {
+    left: 100%;
+}
+
+.card-icona {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.card-frattale:hover .card-icona {
+    transform: scale(1.2) rotate(8deg);
+}
+
+.card-frattale h2 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    color: #4fc3f7;
+}
+
+.card-frattale p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1.4;
+    text-align: center;
+}
+
+
+/* ARCHIVIO */
+.archivio-griglia {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.archivio-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.archivio-card img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.archivio-info {
+    width: 100%;
+    font-size: 0.85rem;
+    color: #444;
+}
+
+.archivio-info p {
+    margin: 0.2rem 0;
+    text-align: left;
+    color: black;
+}
+
+.archivio-azioni {
+    display: flex;
+    gap: 0.5rem;
+}
+
+
+/* FOOTER */
+footer {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    color: white;
+    margin-top: auto;
+    padding: 3rem 2rem 1.5rem;
+}
+
+.footer-contenuto {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.footer-titolo {
+    text-align: center;
+}
+
+.footer-titolo h3 {
+    font-size: 1.4rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.footer-titolo p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.footer-team {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-align: center;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    min-width: 200px;
+    transition: background 0.3s;
+}
+
+.footer-card:hover {
+    background: rgba(255,255,255,0.13);
+}
+
+.footer-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0d7377, #4fc3f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+}
+
+.footer-card h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.footer-card p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+}
+
+.footer-card a {
+    font-size: 0.78rem;
+    color: #4fc3f7;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-card a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.10);
+    width: 100%;
+    text-align: center;
+    padding-top: 1.2rem;
+}
+
+.footer-bottom p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    margin: 0;
+}
